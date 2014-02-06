@@ -52,6 +52,14 @@ int main(void){
 	std::cout << "m6 is " << m6.row() << " x " << m6.col() << " :" << std::endl;
 	disp(m6);
 
+	lazy::step_matrix<double,decltype(m4)> m7(m4);
+	std::cout << "m7 is " << m7.row() << " x " << m7.col() << " :" << std::endl;
+	disp(m7);
+
+        auto m8 = m7 + m4;
+	std::cout << "m8 is " << m8.row() << " x " << m8.col() << " :" << std::endl;
+	disp(m8);
+
 }
 
 

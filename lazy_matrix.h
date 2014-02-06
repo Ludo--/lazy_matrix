@@ -107,25 +107,45 @@ public:
 
 };
 
-template<typename T,typename M>
+template<typename T, typename M>
 class step_matrix{
 private:
 	int _row, _col;
 	std::unordered_map<int,T> _body;
-
+	const M & _source; 
 public:
 	step_matrix(){};
-	template <typename M>
-	step_matrix(const M &m){
-		_row = m.row();
-		_col = m.col();
-	}
+	step_matrix(const M &m):_row(m.row()),_col(m.col()),_source(m){	}
 	virtual ~step_matrix(){};
 
-	/*void init(const int &row, const int &col){
+/*void init(const int &row, const int &col){
 		_row = row;
 		_col = col;
 	}*/
+
+	T getValue(const int &i, const int &j){
+		auto got = _body.find(i*_col+j);
+		if(got == _body.end()){
+			T val = _source(i,j);
+			_body.insert({{i*_col+j,val}});
+			return val;
+		}else{
+			return got->second;
+		}
+	}
+    
+	int row()const{
+		return _row;
+	}
+
+	int col()const{
+		return _col;
+	}
+	
+	virtual T operator()(const int &i, const int &j) const {
+		return const_cast<step_matrix<T,M>*>(this)->getValue(i, j);
+	}
+
 };
 
 template<typename Left, typename Right>
