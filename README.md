@@ -1,6 +1,6 @@
 # Lazy matrix
-This is inspired from this 
-[crazy]: http://crazycpp.wordpress.com/2013/06/28/beginning-template-meta-programming-introducing-meta-functions/ "blog post"
+This is inspired from this [blog post].
+[blog post]: <http://crazycpp.wordpress.com/2013/06/28/beginning-template-meta-programming-introducing-meta-functions/> 
 
 lazy_matrix defines a set of template classes to operate on matrices lazily. Only the elements
 explicitely required are computed.  
